@@ -1,6 +1,4 @@
-#include "glad.h"
 #include "simple_graphics_library.h"
-#include <GLFW/glfw3.h>
 
 #include <iostream>
 
