@@ -4,6 +4,7 @@
 #include <iostream>
 
 namespace Color = SimpleGraphicsLibrary::Color;
+typedef std::chrono::high_resolution_clock high_res_clock;
 
 struct state_t {
   double box_x;
@@ -50,19 +51,18 @@ int main() {
   state_t state;
   initialize_state(&state);
 
-  std::chrono::high_resolution_clock::time_point t1 =
-      std::chrono::high_resolution_clock::now();
+  high_res_clock::time_point t1 = high_res_clock::now();
   while (!window->shouldClose()) {
-    std::chrono::high_resolution_clock::time_point t2 =
-        std::chrono::high_resolution_clock::now();
-    std::chrono::duration<double> dt = t2 - t1;
+    high_res_clock::time_point t2 = high_res_clock::now();
+    std::chrono::duration<double> duration = t2 - t1;
+    double dt = duration.count();
     t1 = t2;
 
     if (window->keyIsPressed(GLFW_KEY_ESCAPE)) {
       window->setShouldClose(true);
     }
 
-    update(&state, dt.count());
+    update(&state, dt);
     render(window, &state);
 
     window->swapBuffers();
