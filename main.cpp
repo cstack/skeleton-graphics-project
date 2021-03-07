@@ -4,10 +4,11 @@
 
 #include <iostream>
 
-using namespace SimpleGraphicsLibrary;
+namespace Color = SimpleGraphicsLibrary::Color;
 
 int main() {
-  Window *window = initialize(800, 600);
+  SimpleGraphicsLibrary::Window *window =
+      SimpleGraphicsLibrary::initialize(800, 600);
   if (window == NULL) {
     std::cout << "Failed to initalize SimpleGraphicsLibrary" << std::endl;
     return -1;
